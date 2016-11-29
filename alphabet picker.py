@@ -10,17 +10,24 @@ hiragana_alpha = {"あ":"a","い":"i","う":"u","え":"e","お":"o",
 def otherfunction():
     if v.get() == 1:
         print("selected: hiragana")
-        hiragana(hiragana_alpha)
+        hiragana()
     else:
         print("fears: confirmed")
 
 def counter(count):
     count =+ 1
-
-def hiragana(hiragana):
+    if count == 10:
+        print("yay")
+    else:
+        counter(count)
+def hiragana():
     root = Tk()
-    Label(root,text=random.choice(list(hiragana.keys())),height=1,width=16,fg="black",font="Times").pack()
-    counter(counter)
+    Label(root,text="""fill in the box below with the correct letter!\nif you need help, click the hint box.\nwhen you are sure of your answer, click 'okay'""",
+          fg="blue",font="Times 12 italic").pack()
+    Label(root,text=random.choice(list(hiragana_alpha.keys())),height=1,width=16,fg="black",font="Times 50 bold").pack()
+    
+def katakana():
+    pass
     
 #pick alphabet
 def pickalphabet():
@@ -42,10 +49,9 @@ def pickalphabet():
                 padx = 20, 
                 variable=v, 
                 value=2).pack(anchor=W)
-
+    Button(text='ok',
+           command=otherfunction).pack()
     Button(text="quit",
            fg=random.choice(colours),
            command=quit).pack()
-    Button(text='ok',
-           command=otherfunction).pack()
 pickalphabet()
