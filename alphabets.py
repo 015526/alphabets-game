@@ -37,4 +37,6 @@ def pickalphabet():
     Button(text="quit",
            fg=random.choice(colours),
            command=quit).pack()
-pickalphabet()
+    
+if __name__ == "__main__":
+    pickalphabet()
