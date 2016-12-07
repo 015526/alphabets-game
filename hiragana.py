@@ -23,6 +23,7 @@ def counter():
         hiragana1()
 
 def check():
+    global correct
     print(entry.get())
     if entry.get() == hiraganaAl[x]:
         Label(root,text=answer,fg="red").pack()
@@ -35,11 +36,15 @@ def check():
         counter()
 
 def hint():
-    global answer
-    answer = "sneaky-peak:",hiraganaAl[x] #answer is not definied
-    Label(root,text=answer,fg="red").pack()
+    global hinted
+    if not hinted: #check if the hint is already being displayed
+        hinted = True
+        global answer
+        answer = "sneaky-peak:",hiraganaAl[x] #answer is not definied
+        Label(root,text=answer,fg="red").pack()
     
 def hiragana1():
+    global hinted
     global entry
     global x
     global root
@@ -47,8 +52,8 @@ def hiragana1():
     Label(root,text="""fill in the box below with the correct letter!\nif you need help, click the hint box.\nwhen you are sure of your answer, click 'okay'""",
           fg="blue",font="Times 12 italic").pack()
     x = random.choice(list(hiraganaAl.keys()))
-    Label(root,text=x,height=1,width=16,fg="black",font="Times 50 bold").pack()
-
+    Label(root,text=x,height=1,width=16,fg="black",font="\"Comic Sans MS\" 50 bold").pack()
+    hinted = False
     #entry and OK button
     entry=Entry(root)
     entry.pack()
